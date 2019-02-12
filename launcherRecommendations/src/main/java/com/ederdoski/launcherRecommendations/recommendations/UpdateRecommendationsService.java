@@ -1,5 +1,6 @@
 package com.ederdoski.launcherRecommendations.recommendations;
 
+import android.app.Activity;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -46,35 +47,36 @@ public class UpdateRecommendationsService extends IntentService {
         int icon        = intent.getIntExtra("cardIcon", R.mipmap.ic_launcher);
         int cardWidth   = intent.getIntExtra("cardWidth", res.getDimensionPixelSize(R.dimen.card_width));
         int cardHeight  = intent.getIntExtra("cardHeight", res.getDimensionPixelSize(R.dimen.card_height));
+        Class toClass   = (Class<Activity>)intent.getExtras().getSerializable("toClass");
         aRecommended    = intent.getParcelableArrayListExtra("LauncherRecommended");
         ContentRecommendation.Builder builder = new ContentRecommendation.Builder().setBadgeIcon(icon);
 
         try {
 
-            for(int i = 0; i < aRecommended.size(); i++) {
+            if(toClass != null) {
+                for (int i = 0; i < aRecommended.size(); i++) {
 
-                LauncherRecommended video = aRecommended.get(i);
+                    LauncherRecommended video = aRecommended.get(i);
 
-                int id = Long.valueOf(video.getId()).hashCode();
+                    int id = Long.valueOf(video.getId()).hashCode();
 
-                builder.setIdTag("video" + id)
-                        .setTitle(video.getTitle())
-                        .setText(video.getDescription());
+                    builder.setIdTag("video" + id)
+                            .setTitle(video.getTitle())
+                            .setText(video.getDescription())
+                            .setContentIntentData(ContentRecommendation.INTENT_TYPE_ACTIVITY, buildPendingIntent(video, toClass, id), 0, null);
 
-                        //.setContentIntentData(ContentRecommendation.INTENT_TYPE_ACTIVITY, buildPendingIntent(video, toClass, id), 0, null);
+                    Bitmap bitmap = Glide.with(getApplication())
+                            .asBitmap()
+                            .load(video.getImageUrl())
+                            .submit(cardWidth, cardHeight)
+                            .get();
 
-                Bitmap bitmap = Glide.with(getApplication())
-                        .asBitmap()
-                        .load(video.getImageUrl())
-                        .submit(cardWidth, cardHeight)
-                        .get();
+                    builder.setContentImage(bitmap);
 
-                builder.setContentImage(bitmap);
-
-                ContentRecommendation rec = builder.build();
-                Notification notification = rec.getNotificationObject(getApplicationContext());
-
-                mNotifManager.notify(id, notification);
+                    ContentRecommendation rec = builder.build();
+                    Notification notification = rec.getNotificationObject(getApplicationContext());
+                    mNotifManager.notify(id, notification);
+                }
             }
 
         } catch (InterruptedException | ExecutionException e) {
