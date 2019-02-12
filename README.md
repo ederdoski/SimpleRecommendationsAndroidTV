@@ -4,7 +4,7 @@
 
 ## Introduction
 
-AndroidTV allows you to communicate through an API to the TV launcher providing easy access to content of your application without having to enter it. This project is a simple interface to facilitate the use of the AndroidTV Recommendations Row, I hope it saves you time of programming :).
+AndroidTV allows you to communicate through an API to the TV launcher, which allows you to easily access the content of your application without having to enter. This project is a simple interface to facilitate the use of the Row of Android TV Recommendations, trying to show content cards in the launcher of AndroidTV devices making a minimum configuration, I hope it saves you programming time :).
 
 ## Install
 
@@ -27,7 +27,7 @@ dependencies {
 ## Usage
 
 * **In Manifest**
-
+```
 <manifest>
     ...
      <application>
@@ -49,22 +49,9 @@ dependencies {
     </application>
 
 </manifest>
+```
 
 * **In Java**
-
-
-        ArrayList<LauncherRecommended> aVideo = new ArrayList<>();
-
-        aVideo.add(new LauncherRecommended("1111", "OPEN HERE", "DESCRIPTION PRUEBA", "https://e.radio-studio92.io/normal/2018/05/15/080108_610158.jpg"));
-
-        Intent recommendationIntent = new Intent(this, UpdateRecommendationsService.class);
-        recommendationIntent.putParcelableArrayListExtra("LauncherRecommended", aVideo);
-        recommendationIntent.putExtra("cardIcon", R.mipmap.ic_launcher);
-        recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(R.dimen.card_width));
-        recommendationIntent.putExtra("cardHeight", getResources().getDimensionPixelSize(R.dimen.card_height));
-        recommendationIntent.putExtra("toClass", MainActivity.class);
-        startService(recommendationIntent);
-
 
 1) Create and insert data into an ArrayList where you will place the content you want to display in the Launcher.
 
@@ -81,8 +68,22 @@ dependencies {
         recommendationIntent.putExtra("toClass", MainActivity.class);
         startService(recommendationIntent);
 ```
-## Adtional Methods
+## Aditional Methods
 
+* Set a personalized image for the card.
+```
+recommendationIntent.putExtra("cardIcon", R.mipmap.ic_launcher);
+```
+
+* Set a personalized width for the card.
+```
+recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(R.dimen.card_width));
+```
+
+* Set a personalized height for the card.
+```
+recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(R.dimen.card_height));
+```
 
 ## References
 
