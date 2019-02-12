@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">LauncherRecommendations</string>
+
+    <dimen name="card_width">56dp</dimen>
+    <dimen name="card_height">88dp</dimen>
+
+</resources>
