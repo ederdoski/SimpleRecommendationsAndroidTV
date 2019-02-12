@@ -70,7 +70,7 @@ dependencies {
 ```
 ## Aditional Methods
 
-* Set a personalized image for the card.
+* Set a personalized image bottom for the card.
 ```
 recommendationIntent.putExtra("cardIcon", R.mipmap.ic_launcher);
 ```
