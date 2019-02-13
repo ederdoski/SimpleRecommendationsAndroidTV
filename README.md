@@ -85,6 +85,39 @@ recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(
 recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(R.dimen.card_height));
 ```
 
+* Send a string, which you can retrieve when you click on the card
+```
+recommendationIntent.putExtra("extra", "string_extra");
+```
+
+* Send an array of String[], which you can recover by clicking on the card
+```
+recommendationIntent.putExtra("array-extra", aExtra);
+```
+
+* This method obtains the string set on a card when clicking
+```
+ private String getIntent(Activity act) {
+        if(act.getIntent() != null) {
+            return act.getIntent().getStringExtra("extra");
+        }else{
+            return "null";
+        }
+    }
+```
+
+* This method obtains the String [] set on a card when clicking
+```
+ private String[] getIntentArray(Activity act) {
+        if(act.getIntent() != null){
+            return act.getIntent().getStringArrayExtra("array-extra");
+        }else{
+            return new String[0];
+        }
+    }
+```
+
+
 ## References
 
 Recommendations in Android N and earlier | Android Developers](https://developer.android.com/training/tv/discovery/recommendations-row)
