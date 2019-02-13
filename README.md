@@ -120,7 +120,7 @@ recommendationIntent.putExtra("array-extra", aExtra);
 
 ## References
 
-Recommendations in Android N and earlier | Android Developers](https://developer.android.com/training/tv/discovery/recommendations-row)
+[Recommendations in Android N and earlier | Android Developers](https://developer.android.com/training/tv/discovery/recommendations-row)
 
 ## License
 
