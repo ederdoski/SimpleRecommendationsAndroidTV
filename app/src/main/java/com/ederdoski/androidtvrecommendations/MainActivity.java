@@ -16,15 +16,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] aExtra = {"extra_1", "extra_2", "extra_3"};
-        ArrayList<LauncherRecommended> aVideo = new ArrayList<>();
+         String[] aExtra = {"extra_1", "extra_2", "extra_3"};
+        ArrayList<LauncherRecommended> aLauncherRecommended = new ArrayList<>();
 
-        aVideo.add(new LauncherRecommended("1", "Titulo de Prueba  1", "Descripcion Prueba 1 ", "http://lorempixel.com/350/210/"));
-        aVideo.add(new LauncherRecommended("2", "Titulo de Prueba  2", "Descripcion Prueba 2 ", "http://lorempixel.com/350/220/"));
-        aVideo.add(new LauncherRecommended("3", "Titulo de Prueba  3", "Descripcion Prueba 3 ", "http://lorempixel.com/350/230/"));
+        aLauncherRecommended.add(new LauncherRecommended("1", "Recommended 1", "DESCRIPTION 1", "https://loremflickr.com/320/240"));
+        aLauncherRecommended.add(new LauncherRecommended("2", "Recommended 2", "DESCRIPTION 2", "https://loremflickr.com/320/250"));
+        aLauncherRecommended.add(new LauncherRecommended("3", "Recommended 3", "DESCRIPTION 3", "https://loremflickr.com/320/260"));
+        aLauncherRecommended.add(new LauncherRecommended("4", "Recommended 4", "DESCRIPTION 4", "https://loremflickr.com/320/270"));
+        aLauncherRecommended.add(new LauncherRecommended("5", "Recommended 5", "DESCRIPTION 5", "https://loremflickr.com/320/280"));
+        aLauncherRecommended.add(new LauncherRecommended("6", "Recommended 6", "DESCRIPTION 6", "https://loremflickr.com/320/290"));
+        aLauncherRecommended.add(new LauncherRecommended("7", "Recommended 7", "DESCRIPTION 7", "https://loremflickr.com/320/210"));
+        aLauncherRecommended.add(new LauncherRecommended("8", "Recommended 8", "DESCRIPTION 8", "https://loremflickr.com/320/220"));
+
 
         Intent recommendationIntent = new Intent(this, UpdateRecommendationsService.class);
-        recommendationIntent.putParcelableArrayListExtra("LauncherRecommended", aVideo);
+        recommendationIntent.putParcelableArrayListExtra("LauncherRecommended", aLauncherRecommended);
         recommendationIntent.putExtra("cardIcon", R.mipmap.ic_launcher);
         recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(R.dimen.card_width));
         recommendationIntent.putExtra("cardHeight", getResources().getDimensionPixelSize(R.dimen.card_height));
