@@ -10,7 +10,7 @@ AndroidTV allows you to communicate through an API to the TV launcher, which all
 
 You can download library files from JCenter or GitHub.
 
-**[LatestVersion is 1.0.1](https://bintray.com/ederdoski/Maven/simple-cartesian-plotter)**
+**[LatestVersion is 1.0](https://bintray.com/ederdoski/Maven/simple-launcher-recommendations)**
 
 Add the following in your app's build.gradle file:
 
