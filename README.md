@@ -1,6 +1,6 @@
 # Android Simple Recommendations Row of AndroidTV
 
-![Example](img/simpleCartesianPlotter.gif) 
+![Example](img/img_1.png)   ![Example](img/img_2.png) 
 
 ## Introduction
 
