@@ -34,7 +34,7 @@ dependencies {
         ....
 
        <receiver
-            android:name=".RecommendationReceiver"
+            android:name="com.ederdoski.launcherRecommendations.recommendations.RecommendationReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -43,7 +43,7 @@ dependencies {
         </receiver>
 
         <service
-            android:name=".UpdateRecommendationsService"
+            android:name="com.ederdoski.launcherRecommendations.recommendations.UpdateRecommendationsService"
             android:enabled="true" />
 
     </application>
@@ -53,20 +53,36 @@ dependencies {
 
 * **In Java**
 
-1) Create and insert data into an ArrayList where you will place the content you want to display in the Launcher.
+1) Create and insert data into an ArrayList where you will place the content you want to display in the Launcher,
+For your comfort there are 3 different constructors, use the one that best suits your needs.
 
 ![Warning](img/warning.png) **the ID field should only contain numbers** ![Warning](img/warning.png)
 
+* Constructor 1: It's the simplest one just needs a series of basic data to work.
 ```
    ArrayList<LauncherRecommended> aRecommendedContent = new ArrayList<>();
-   aRecommendedContent.add(new LauncherRecommended("INSERT_ID", "INSERT_TITLE", "INSERT_DESCRIPTION", "INSERT_URL_IMG"));
+   aRecommendedContent.add(new LauncherRecommended("INSERT_ID_ONLY_NUMBER", "INSERT_TITLE", "INSERT_DESCRIPTION", "INSERT_URL_IMG"));
+
+```
+
+* Constructor 2: You can add an Extra String parameter, and then obtain it when the user presses the corresponding card.
+```
+   ArrayList<LauncherRecommended> aRecommendedContent = new ArrayList<>();
+   aRecommendedContent.add(new LauncherRecommended("INSERT_ID_ONLY_NUMBER", "INSERT_TITLE", "INSERT_DESCRIPTION", "INSERT_URL_IMG", "RANDOM_STRING_EXTRA"));
+```
+
+
+* Constructor 3: You can add an extra String parameter and an extra ArrayList <String>, designed to handle a larger amount of data, and then obtain it when the user presses the corresponding card.
+```
+   ArrayList<LauncherRecommended> aRecommendedContent = new ArrayList<>();
+   aRecommendedContent.add(new LauncherRecommended("INSERT_ID_ONLY_NUMBER", "INSERT_TITLE", "INSERT_DESCRIPTION", "INSERT_URL_IMG", "RANDOM_STRING_EXTRA", "ARRAY_LIST_EXTRA_STRING"));
 ```
 
 2) Create an intent that references the UpdateRecommendationsService and sends the previously created ArrayList by parameters, additionally add the name of a class to which you want to redirect the user when you click on the card.
 
 ```
     Intent recommendationIntent = new Intent(this, UpdateRecommendationsService.class);
-        recommendationIntent.putParcelableArrayListExtra("LauncherRecommended", aRecommendedContent);
+        recommendationIntent.putExtra("LauncherRecommended", aRecommendedContent);
         recommendationIntent.putExtra("toClass", MainActivity.class);
         startService(recommendationIntent);
 ```
@@ -87,38 +103,33 @@ recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(
 recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(R.dimen.card_height));
 ```
 
-* Send a string, which you can retrieve when you click on the card
+* This method obtains the string set on a card when clicking.
 ```
-recommendationIntent.putExtra("extra", "string_extra");
-```
-
-* Send an array of String[], which you can recover by clicking on the card
-```
-recommendationIntent.putExtra("array-extra", aExtra);
-```
-
-* This method obtains the string set on a card when clicking
-```
- private String getIntent(Activity act) {
+  private String getIntent(Activity act, String field) {
         if(act.getIntent() != null) {
-            return act.getIntent().getStringExtra("extra");
+            return act.getIntent().getStringExtra(field);
         }else{
-            return "null";
+            return Constants.NULL;
         }
     }
 ```
 
-* This method obtains the String [] set on a card when clicking
+* This method obtains the ArrayList<String> set on a card when clicking.
+  
 ```
- private String[] getIntentArray(Activity act) {
+ private ArrayList<String> getIntentArrayList(Activity act, String field) {
         if(act.getIntent() != null){
-            return act.getIntent().getStringArrayExtra("array-extra");
+            return (ArrayList<String>) act.getIntent().getSerializableExtra(field);
         }else{
-            return new String[0];
+            return new ArrayList<>();
         }
     }
 ```
 
+## NOTE: 
+
+* To retrieve the extra String parameter, you must use the key: recommendation_extra
+* To retrieve the ArrayList <String> extra parameter, you must use the key: recommendation_array_extra
 
 ## References
 
