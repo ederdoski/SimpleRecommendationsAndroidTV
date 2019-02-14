@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    
+   implementation 'com.ederdoski.recommendations:launcherRecommendations:1.0' 
 }
 ```
 
