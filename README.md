@@ -137,6 +137,8 @@ recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(
 
 [Recommendations in Android N and earlier | Android Developers](https://developer.android.com/training/tv/discovery/recommendations-row)
 
+[Recommend TV content | Android Developers](https://developer.android.com/training/tv/discovery/recommendations)
+
 ## License
 
 This code is open-sourced software licensed under the [MIT license.](https://opensource.org/licenses/MIT)
