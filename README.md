@@ -54,6 +54,7 @@ dependencies {
 * **In Java**
 
 1) Create and insert data into an ArrayList where you will place the content you want to display in the Launcher.
+![Warning](img/warning.png) **the ID field should only contain numbers** ![Warning](img/warning.png)
 
 ```
    ArrayList<LauncherRecommended> aRecommendedContent = new ArrayList<>();
