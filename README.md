@@ -62,7 +62,6 @@ For your comfort there are 3 different constructors, use the one that best suits
 ```
    ArrayList<LauncherRecommended> aRecommendedContent = new ArrayList<>();
    aRecommendedContent.add(new LauncherRecommended("INSERT_ID_ONLY_NUMBER", "INSERT_TITLE", "INSERT_DESCRIPTION", "INSERT_URL_IMG"));
-
 ```
 
 * Constructor 2: You can add an Extra String parameter, and then obtain it when the user presses the corresponding card.
