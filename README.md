@@ -1,6 +1,6 @@
 # Android Simple Recommendations Row of AndroidTV
 
-![Example](img/img1.png)   ![Example](img/img_2.jpg) 
+![Example](img/img_2.jpg) 
 
 ## Introduction
 
