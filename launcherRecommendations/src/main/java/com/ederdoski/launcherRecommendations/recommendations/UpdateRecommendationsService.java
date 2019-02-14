@@ -47,10 +47,8 @@ public class UpdateRecommendationsService extends IntentService {
         int icon        = intent.getIntExtra("cardIcon", R.mipmap.ic_launcher);
         int cardWidth   = intent.getIntExtra("cardWidth", res.getDimensionPixelSize(R.dimen.card_width));
         int cardHeight  = intent.getIntExtra("cardHeight", res.getDimensionPixelSize(R.dimen.card_height));
-        String extra    = intent.getStringExtra("extra");
-        String[] aExtra    = intent.getStringArrayExtra("array-extra");
         Class toClass   = (Class<Activity>)intent.getExtras().getSerializable("toClass");
-        aRecommended    = intent.getParcelableArrayListExtra("LauncherRecommended");
+        aRecommended    = (ArrayList<LauncherRecommended>) intent.getSerializableExtra("LauncherRecommended");
         ContentRecommendation.Builder builder = new ContentRecommendation.Builder().setBadgeIcon(icon);
 
         try {
@@ -65,7 +63,7 @@ public class UpdateRecommendationsService extends IntentService {
                     builder.setIdTag("video" + id)
                             .setTitle(video.getTitle())
                             .setText(video.getDescription())
-                            .setContentIntentData(ContentRecommendation.INTENT_TYPE_ACTIVITY, buildPendingIntent(video, toClass, extra, aExtra), 0, null);
+                            .setContentIntentData(ContentRecommendation.INTENT_TYPE_ACTIVITY, buildPendingIntent(video, toClass, video.getExtra(), video.getArrayExtra()), 0, null);
 
                     Bitmap bitmap = Glide.with(getApplication())
                             .asBitmap()
@@ -86,15 +84,15 @@ public class UpdateRecommendationsService extends IntentService {
         }
     }
 
-    private Intent buildPendingIntent(LauncherRecommended video, Class toClass, String extra, String[] aExtra) {
+    private Intent buildPendingIntent(LauncherRecommended video, Class toClass, String extra, ArrayList<String> aExtra) {
         Intent detailsIntent = new Intent(this, toClass);
 
         if(extra != null) {
-            detailsIntent.putExtra("extra", extra);
+            detailsIntent.putExtra("recommendation_extra", extra);
         }
 
         if(aExtra != null) {
-            detailsIntent.putExtra("array-extra", aExtra);
+            detailsIntent.putExtra("recommendation_array_extra", aExtra);
         }
 
         detailsIntent.setAction(video.getId());

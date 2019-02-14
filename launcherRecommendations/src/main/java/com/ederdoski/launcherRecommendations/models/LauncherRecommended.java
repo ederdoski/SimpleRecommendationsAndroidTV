@@ -3,52 +3,42 @@ package com.ederdoski.launcherRecommendations.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class LauncherRecommended implements Parcelable {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class LauncherRecommended implements Serializable {
 
     private String id;
     private String title;
     private String description;
     private String imageUrl;
+    private String extra;
+    private ArrayList<String> arrayExtra;
 
-    public LauncherRecommended(Parcel source) {
-        id = source.readString();
-        title = source.readString();
-        description = source.readString();
-        imageUrl = source.readString();
+    public LauncherRecommended(String id, String title, String description, String imageUrl, String extra, ArrayList<String> arrayExtra) {
+        this.id          = id;
+        this.title       = title;
+        this.description = description;
+        this.imageUrl    = imageUrl;
+        this.extra       = extra;
+        this.arrayExtra  = arrayExtra;
+    }
+
+    public LauncherRecommended(String id, String title, String description, String imageUrl, String extra) {
+        this.id          = id;
+        this.title       = title;
+        this.description = description;
+        this.imageUrl    = imageUrl;
+        this.extra       = extra;
     }
 
     public LauncherRecommended(String id, String title, String description, String imageUrl) {
-        this.id = id;
-        this.title = title;
+        this.id          = id;
+        this.title       = title;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.imageUrl    = imageUrl;
+        this.extra       = extra;
     }
-
-    public static final Creator<LauncherRecommended> CREATOR = new Creator<LauncherRecommended>() {
-        @Override
-        public LauncherRecommended createFromParcel(Parcel in) {
-            return new LauncherRecommended(in);
-        }
-
-        @Override
-        public LauncherRecommended[] newArray(int size) {
-            return new LauncherRecommended[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return this.hashCode();
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.id);
-        parcel.writeString(this.title);
-        parcel.writeString(this.description);
-        parcel.writeString(this.imageUrl);
-    }
-
 
     public String getId() {
         return id;
@@ -80,5 +70,21 @@ public class LauncherRecommended implements Parcelable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public ArrayList<String> getArrayExtra() {
+        return arrayExtra;
+    }
+
+    public void setArrayExtra(ArrayList<String> arrayExtra) {
+        this.arrayExtra = arrayExtra;
     }
 }
