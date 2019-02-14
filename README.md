@@ -126,11 +126,13 @@ recommendationIntent.putExtra("cardWidth", getResources().getDimensionPixelSize(
     }
 ```
 
-## NOTE: 
+### NOTE: 
 
 * To retrieve the extra String parameter, you must use the key: recommendation_extra
 * To retrieve the ArrayList <String> extra parameter, you must use the key: recommendation_array_extra
+* For more information check the [Example Project](https://github.com/ederdoski/SimpleRecommendationsAndroidTV/tree/master/app/src/main) 
 
+  
 ## References
 
 [Recommendations in Android N and earlier | Android Developers](https://developer.android.com/training/tv/discovery/recommendations-row)
