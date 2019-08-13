@@ -1,4 +1,6 @@
-# Android Simple Recommendations Row of AndroidTV![android-arsenal](https://img.shields.io/badge/Android%20Arsenal-SimpleRecommendationsAndroidTV-green.svg?style=flat)(https://android-arsenal.com/details/3/7810)
+# Android Simple Recommendations Row of AndroidTV [![android-arsenal](https://img.shields.io/badge/Android%20Arsenal-SimpleRecommendationsAndroidTV-green.svg?style=flat)](https://android-arsenal.com/details/3/7810)
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SimpleRecommendationsAndroidTV-green.svg?style=flat)](https://android-arsenal.com/details/3/7810)
 
 ![Example](img/img_2.jpg) 
 
